@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VISIBILIDADE | QUILOMBOLA</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBViHt9vcGdLiugmyPfLJm6ebjgMcgdmAE" async defer></script>
+	<!--script src="https://maps.googleapis.com/maps/api/js" async defer></script-->
+
+	
+	<!-- Load Leaflet CSS and JS from CDN-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
+  
+	<!-- Load jQuery  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+	<!-- Load Font-Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="markers/leaflet.extra-markers.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style-desktop.css">
+	<link rel="stylesheet" href="css/loader.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--  <link rel="stylesheet" href="../Leaflet/dist/leaflet.css" />
+	<script type="text/javascript" src="../Leaflet/dist/leaflet-src.js"></script>-->
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet-src.js"></script>
+
+	<script type="text/javascript" src="Leaflet.GoogleMutant.js"></script>
+	<style>
+	
+
+	</style>
+</head>
+<body>
+		
+	<div id="title">
+		<div class="icon-bar">
+		<a href="../index.html"><i class="fa fa-home"></i></a>	
+		<a href="../MAP/map.html"><i class="fa fa-globe"></i></a>
+		<a href="../DASHBOARD/dashboard.html"><i class="fa fa-bar-chart"></i></a>
+		<a class="active" href="#"><i class="fa fa-map-marker"></i></a>
+	  </div>
+	</div>
+		  <style>
+		 .icon-bar {
+  width: 100%; /* Full-width */
+  background-color: #555; /* Dark-grey background */
+  overflow: auto; /* Overflow due to float */
+}
+
+.icon-bar a {
+  float: left; /* Float links side by side */
+  text-align: center; /* Center-align text */
+  width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
+  padding: 12px 0; /* Some top and bottom padding */
+  transition: all 0.3s ease; /* Add transition for hover effects */
+  color: white; /* White text color */
+  font-size: 36px; /* Increased font size */
+}
+
+.icon-bar a:hover {
+  background-color: #000; /* Add a hover color */
+}
+
+.active {
+  background-color: #4CAF50; /* Add an active/current color */
+}
+	  </style>
+
+  <div id="narration">
+    <div id="contents">
+      <div id="top"></div>
+    </div>
+  </div>
+	
+  <div id="map" class="map"></div>
+
+	<script type="text/javascript">
+		
+		var mapopts =  {
+//      zoomSnap: 0.1
+		};
+
+		var map = L.map('map', mapopts).setView([0,0],0);
+
+		var roadMutant = L.gridLayer.googleMutant({
+			maxZoom: 24,
+			type:'roadmap'
+		}).addTo(map);
+
+		var satMutant = L.gridLayer.googleMutant({
+			maxZoom: 24,
+			type:'satellite'
+		});
+
+		var terrainMutant = L.gridLayer.googleMutant({
+			maxZoom: 24,
+			type:'terrain'
+		});
+
+		var hybridMutant = L.gridLayer.googleMutant({
+			maxZoom: 24,
+			type:'hybrid'
+		});
+
+		var styleMutant = L.gridLayer.googleMutant({
+			styles: [
+				{elementType: 'labels', stylers: [{visibility: 'off'}]},
+				{featureType: 'water', stylers: [{color: '#444444'}]},
+				{featureType: 'landscape', stylers: [{color: '#eeeeee'}]},
+				{featureType: 'road', stylers: [{visibility: 'off'}]},
+				{featureType: 'poi', stylers: [{visibility: 'off'}]},
+				{featureType: 'transit', stylers: [{visibility: 'off'}]},
+				{featureType: 'administrative', stylers: [{visibility: 'off'}]},
+				{featureType: 'administrative.locality', stylers: [{visibility: 'off'}]}
+			],
+			maxZoom: 24,
+			type:'roadmap'
+		});
+
+		var trafficMutant = L.gridLayer.googleMutant({
+			maxZoom: 24,
+			type:'roadmap'
+		});
+		trafficMutant.addGoogleLayer('TrafficLayer');
+
+
+		var transitMutant = L.gridLayer.googleMutant({
+			maxZoom: 24,
+			type:'roadmap'
+		});
+		transitMutant.addGoogleLayer('TransitLayer');
+
+
+
+		L.control.layers({
+			Roadmap: roadMutant,
+			Aerial: satMutant,
+			Terrain: terrainMutant,
+			Hybrid: hybridMutant,
+			Styles: styleMutant,
+			Traffic: trafficMutant,
+			Transit: transitMutant
+		}, {}, {
+			collapsed: true
+		}).addTo(map);
+
+	</script>
+	<script type="text/javascript" src="google-doc-url.js"></script>
+	<script type="text/javascript" src="scripts/tabletop.js"></script>
+	<script type="text/javascript" src="scripts/leaflet-providers.js"></script>
+	<script type="text/javascript" src="markers/leaflet.extra-markers.min.js"></script>
+	<script type="text/javascript" src="scripts/constants.js"></script>
+	<script type="text/javascript" src="scripts/jquery.csv.js"></script>
+	<script type="text/javascript" src="scripts/storymap.js"></script>
+	<script type="text/javascript" src="googlemaps.js"></script>
+</body>
+</html>
