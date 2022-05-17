@@ -6,12 +6,15 @@ Quilombola are the descendants of Afro-Brazilian slaves who escaped from slave p
  
  The app features the following key components:
 
-1.	A **DASHBOARD** built in R data to provide visualization tool to help the Quilombola community to communicate their data story with the rest of the world-shining a light on their health, economic, cultural and social impacts of the COVID-19 pandemic.
+1.	A **DASHBOARD** built in R to provide visualization tool to help the Quilombola community to communicate their data story with the rest of the world-shining a light on their health, economic, cultural and social impacts of the COVID-19 pandemic.
 
-2.	A **STORYMAP** which is a scroll-based narration 
+2.	A **STORYMAP** which is enables the community to create beautiful digital scroll-based map narratives that can effect change, influence opinion, and create awareness.
 
+3. And **MAP** which provides a platform for the community to map and display important locations, sites, facilities, territories etc. using custom indigenous icons.
 
-The map is hosted by GitHub and can be found at https://douglasmbura.github.io/Quilombo-R-Map/
+**SEE VISIBIDADE QUILOMBOLA IN ACTION HERE:**
+https://douglasmbura.github.io/Visibilidade-Quilombola/
+
 
 CREDITS The Visibilidade Application with R and Google Basemaps was Developed by Douglas Mbura (Kenya) and Rasha Elnimiery (Sudan) with support from Diana Mastracci Sanchez, Geo Indigenous Alliance.
 
